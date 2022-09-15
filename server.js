@@ -2,17 +2,16 @@
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
 const table = require ('console.table');
-require ('doetnv').config();
+require ('dotenv').config();
 
 const connection = mysql.createConnection({
     host: 'localhost',
-    port: 3001,
-    user: 'root',
+    port: 3306,
+    user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: 'emp-db'
-},
-console.log(`Connected to the emp-db database`)
-);
+    database: 'emp_db'
+
+});
 
 connection.connect(function(err) {
     if (err) throw err;
@@ -38,7 +37,7 @@ function options() {
             ]
 
         }).then(function(ans) {
-            switch (ans.choices) {
+            switch (ans.options) {
                 case 'Add department':
                     addDept();
                     break;
@@ -198,7 +197,7 @@ function viewAllDepts() {
     var query = 'SELECT * FROM department';
     connection.query(query, function(err, res) {
         if (err) throw err;
-        console.log(res.length + 'Departments listed');
+        console.log(res.length + ' Departments listed');
         console.table('All departments:', res);
         options();
     })
@@ -209,7 +208,7 @@ function viewAllRoles() {
     var query = 'SELECT * FROM roles';
     connection.query(query, function(err, res) {
         if (err) throw err;
-        console.log(res.length + 'roles listed');
+        console.log(res.length + ' roles listed');
         console.table('All roles:', res);
         options();
     })
@@ -220,7 +219,7 @@ function viewAllEmployees() {
     var query = 'SELECT * FROM employee';
     connection.query(query, function(err, res) {
         if (err) throw err;
-        console.log(res.length + 'employees listed');
+        console.log(res.length + ' employees listed');
         console.table('All employees:', res);
         options();
     })

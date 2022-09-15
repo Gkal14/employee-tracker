@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS emp-db;
-CREATE DATABASE emp-db;
+DROP DATABASE IF EXISTS emp_db;
+CREATE DATABASE emp_db;
 
-USE emp-db;
+USE emp_db;
 
 CREATE TABLE department (
     id INT NOT NULL AUTO_INCREMENT,
@@ -9,25 +9,22 @@ CREATE TABLE department (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE roles (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(30) NOT NULL,
-    salary DECIMAL NOT NULL,
+CREATE TABLE roles(
+    id INT AUTO_INCREMENT,
+    title VARCHAR(30),
+    salary DECIMAL,
     department_id INT,
-    FOREIGN KEY (department_id) REFERENCES department(id) ON DELETE
-    SET NULL
+    PRIMARY KEY (id),
+    FOREIGN KEY (department_id) REFERENCES department(id)
 );
 
-CREATE TABLE employee (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(30) NOT NULL,
-    last_name VARCHAR(30) NOT NULL,
-    role_id INT,
-    manager_id INT,
-    FOREIGN KEY (role_id)
-    REFERENCES roles(id)
-    ON DELETE SET NULL,
-    FOREIGN KEY (manager_id)
-    REFERENCES employee(id)
-   
+
+CREATE TABLE employee(
+id INT AUTO_INCREMENT,
+first_name VARCHAR(30),
+last_name VARCHAR(30),
+roles_id INT,
+manager_id INT,
+PRIMARY KEY(id),
+FOREIGN KEY(manager_id) REFERENCES employee (id)
 );

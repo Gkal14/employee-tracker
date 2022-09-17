@@ -14,12 +14,13 @@ VALUES
 ("Legal Team Lead", 250000, 4),
 ("Lawyer", 190000, 4);
 
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES ("Harry", "Potter", 1, null),
-("Hermione", "Granger", 2, 1),
-("Albus", "Dumbledore", 3, null),
-("Severus", "Snape", 4, 3),
-("Luna", "Lovegood", 5, null),
-("Rubeus", "Hagrid", 6, 5),
-("Ron", "Weasley", 7, null),
-("Dobby", "Just Dobby", 8, 7);
+
+INSERT INTO employee(id, first_name, last_name, role_id, manager_id)
+VALUES
+(1, "Harry", "Potter", "1", "1"),
+(2, "Hermione", "Granger", "2", "2"),
+(3, "Albus", "Dumbledore", "3", "3"),
+(4, "Severus", "Snape", "4", "4"),
+(5,"Luna", "Lovegood", "5", "5"),
+(6, "Rubeus", "Hagrid","1", "1"),
+(7, "Ron", "Weasley","2", "2");
